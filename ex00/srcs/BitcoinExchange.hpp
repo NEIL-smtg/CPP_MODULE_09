@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: suchua <suchua@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: suchua < suchua@student.42kl.edu.my>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 00:55:52 by suchua            #+#    #+#             */
-/*   Updated: 2023/08/26 23:46:40 by suchua           ###   ########.fr       */
+/*   Updated: 2023/08/27 21:30:20 by suchua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,11 @@
 
 # include <iostream>
 # include <algorithm>
-# include <vector>
 # include <fstream>
 # include <map>
 # include <string>
 # include <exception>
-
-# define CURR_YR	2023
-# define ODD_DAYS	31
-# define EVEN_DAYS	30
+# include <string.h>
 
 class BitcoinExchange
 {

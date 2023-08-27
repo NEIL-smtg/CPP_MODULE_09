@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: suchua <suchua@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: suchua < suchua@student.42kl.edu.my>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 00:57:05 by suchua            #+#    #+#             */
-/*   Updated: 2023/08/27 00:11:18 by suchua           ###   ########.fr       */
+/*   Updated: 2023/08/27 19:09:17 by suchua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(int ac, char **av)
 	std::cout << "File received.." << std::endl;
 	try
 	{
-		BitcoinExchange	b("btc_history.csv");
+		BitcoinExchange	b("data.csv");
 		processLine(ifs, b);
 	}
 	catch(const std::exception& e)

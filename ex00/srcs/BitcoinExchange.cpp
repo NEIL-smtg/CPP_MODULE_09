@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: suchua <suchua@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: suchua < suchua@student.42kl.edu.my>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 00:56:59 by suchua            #+#    #+#             */
-/*   Updated: 2023/08/27 00:19:25 by suchua           ###   ########.fr       */
+/*   Updated: 2023/08/27 21:30:03 by suchua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,25 @@ BitcoinExchange::BitcoinExchange(const char *fileName)
 : fileName(fileName)
 {
 	loadDatabase();
-	printDatabase();
+	// printDatabase();
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
+{
+	*this = other;
+}
+
+BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other)
+{
+	if (this == &other)
+		return (*this);
+	this->db = other.db;
+	this->fileName = other.fileName;
+	return (*this);
 }
 
 BitcoinExchange::~BitcoinExchange(){}
 
-//	.csv
 bool	BitcoinExchange::invalidFileName()
 {
 	const char	*s;
@@ -48,7 +61,7 @@ void	BitcoinExchange::loadDatabase()
 	std::getline(file, line);
 	while (std::getline(file, line))
 	{
-		date = strtok(const_cast<char *>(line.c_str()), "|");
+		date = strtok(const_cast<char *>(line.c_str()), ",");
 		price = std::atof(strtok(NULL, "|"));
 		db.insert(std::make_pair(static_cast<std::string>(date), price));
 	}
@@ -74,17 +87,23 @@ void	BitcoinExchange::printResult(std::string date, float price,
 	std::cout << std::endl;
 }
 
+void	getYmd(int &yr, int &month, int &day, const char *date)
+{
+	yr = atoi(date);
+	date = strchr(date, '-') + 1;
+	month = atoi(date);
+	date = strchr(date, '-') + 1;
+	day = atoi(date);
+}
+
 void	BitcoinExchange::search(std::pair<std::string, float> key)
 {
 	std::map<std::string, float>::iterator	it;
 
 	it = db.find(key.first);
-	if (it != db.end())
-		printResult((*it).first, (*it).second, key.second);
-	else
-	{
-		//	a bit hard zzzz....
-	}
+	if (it == db.end())
+		it = db.lower_bound(key.first);
+	printResult((*it).first, (*it).second, key.second);
 }
 
 bool	errorMsg(std::string str)
@@ -110,8 +129,6 @@ bool	BitcoinExchange::dateValidator(char *date)
 	if (!date)
 		return (errorMsg("Error : Missing value.\n"));
 	ptr = strtok(date, "-");
-	// if (!ptr || std::atoi(ptr) > CURR_YR)
-	// 	return (errorMsg("Error : bad input (year) =>"));
 	year = std::atoi(ptr);
 
 	ptr = strtok(NULL, "-");
@@ -121,7 +138,7 @@ bool	BitcoinExchange::dateValidator(char *date)
 
 	ptr = strtok(NULL, "-");
 	day = std::atoi(ptr);
-	if (!ptr || day < 1 || day > ODD_DAYS)
+	if (!ptr || day < 1 || day > 31)
 		return (errorMsg("Error : bad input (day) =>"));
 
 	if (month == 2 && year % 4 == 0)
@@ -131,8 +148,10 @@ bool	BitcoinExchange::dateValidator(char *date)
 		else if (year % 4 == 0 && day > 29)
 			return (errorMsg("Error : bad input (day) =>"));
 	}
-	if (month != 8 && month % 2 == 0 && day > EVEN_DAYS)
+	
+	if (month == 8 && day > 30)
 		return (errorMsg("Error : bad input (day) =>"));
+	
 	return (true);
 }
 
