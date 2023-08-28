@@ -6,7 +6,7 @@
 /*   By: suchua <suchua@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 02:02:29 by suchua            #+#    #+#             */
-/*   Updated: 2023/08/28 02:48:07 by suchua           ###   ########.fr       */
+/*   Updated: 2023/08/28 20:30:39 by suchua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@ int	main(int ac, const char **av)
 	try
 	{
 		PmergeMe	pm(av);
-		std::cout << "Before : ";
+		std::cout << "Before : \n";
 		pm.printContainer();
+		pm.sort();
+		std::cout << "After : \n";
+		pm.printContainer();
+		pm.printRunTime();
+		pm.checkSorted();
 	}
 	catch(const std::exception& e)
 	{

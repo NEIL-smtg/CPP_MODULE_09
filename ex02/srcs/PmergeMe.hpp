@@ -6,7 +6,7 @@
 /*   By: suchua <suchua@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 01:36:38 by suchua            #+#    #+#             */
-/*   Updated: 2023/08/28 02:46:02 by suchua           ###   ########.fr       */
+/*   Updated: 2023/08/28 20:29:27 by suchua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,23 @@
 # include <list>
 # include <exception>
 # include <algorithm>
+# include <ctime>
+# include <unistd.h>
+# include <iomanip>
+# include <deque>
 
 class PmergeMe
 {
 	private:
 		std::vector<int>	vc;
-		std::list<int>		ls;
+		std::deque<int>		dq;
 		void	fillContainer(const char **nums);
 		void	printVector();
 		void	printList();
-		void	sortVector();
-		void	sortList();
+		clock_t	before;
+		clock_t	after;
+		double	vecRunTime;
+		double	listRunTime;
 	public:
 		PmergeMe(const char **nums);
 		PmergeMe(const PmergeMe& other);
@@ -37,6 +43,8 @@ class PmergeMe
 		~PmergeMe();
 		void	printContainer();
 		void	sort();
+		void	printRunTime();
+		void	checkSorted();
 
 		class InvalidInputException : public std::exception
 		{
