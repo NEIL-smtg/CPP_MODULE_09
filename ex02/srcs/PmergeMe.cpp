@@ -6,7 +6,7 @@
 /*   By: suchua <suchua@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 01:35:37 by suchua            #+#    #+#             */
-/*   Updated: 2023/08/28 20:37:09 by suchua           ###   ########.fr       */
+/*   Updated: 2023/08/28 20:39:57 by suchua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	PmergeMe::fillContainer(const char **nums)
 
 void	PmergeMe::printContainer()
 {
-	printList();
+	printQueue();
 }
 
 void	PmergeMe::printVector()
@@ -62,7 +62,7 @@ void	PmergeMe::printVector()
 		std::cout << (*it) << std::endl;
 }
 
-void	PmergeMe::printList()
+void	PmergeMe::printQueue()
 {
 	std::deque<int>::iterator	it;
 
