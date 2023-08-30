@@ -17,7 +17,7 @@ $(OBJS_DIR)%.o:$(SRCS_DIR)%.cpp
 	$(CPP) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CPP) $(CFLAGS) -o $(NAME) $(OBJS)
+	$(CPP) $(CFLAGS) -o $(NAME) $(SRCS)
 
 clean:
 	$(RM) $(OBJS_DIR)

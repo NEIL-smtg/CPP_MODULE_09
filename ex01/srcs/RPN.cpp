@@ -6,7 +6,7 @@
 /*   By: suchua <suchua@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 21:26:35 by suchua            #+#    #+#             */
-/*   Updated: 2023/08/28 01:30:47 by suchua           ###   ########.fr       */
+/*   Updated: 2023/08/30 19:30:43 by suchua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void	RPN::div()
 
 void	RPN::swap2()
 {
+	if (stack.size() < 2)
+		throw invalidTokensException();
 	int	t1;
 	int	t2;
 

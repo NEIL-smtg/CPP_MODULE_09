@@ -6,7 +6,7 @@
 /*   By: suchua <suchua@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 21:24:07 by suchua            #+#    #+#             */
-/*   Updated: 2023/08/28 01:37:27 by suchua           ###   ########.fr       */
+/*   Updated: 2023/08/30 19:30:57 by suchua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ class RPN
 		{
 			const char	*what() const throw ()
 			{
-				return "Error : Invalid tokens.\n";
+				return "Error : Invalid tokens.";
 			}
 		};
 };
